@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\api\PassportAuthController;
 use App\Http\Controllers\api\LoginController;
+use App\Http\Controllers\api\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::post('login', [PassportAuthController::class, 'login']);
 Route::post('employer-register', [PassportAuthController::class, 'employer_register']);
 Route::post('employer-login', [PassportAuthController::class, 'employer_login']);
 
+Route::post('employer/register', [RegisterController::class, 'register']);
 Route::post('employer/login', [LoginController::class, 'login']);
 
   

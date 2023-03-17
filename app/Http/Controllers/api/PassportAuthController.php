@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Employer;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Session\Middleware\AuthenticateSession;
 
 class PassportAuthController extends Controller
 {
@@ -63,52 +66,24 @@ class PassportAuthController extends Controller
  
     }
 
-    public function employer_register(Request $request)
+    /**
+     * Log the user out of the application
+     */
+    public function logout(Request $request): RedirectResponse
     {
-        $this->validate($request, [
-            'firstname' => 'required|min:4',
-            'lastname' => 'required|min:4',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8|confirmed',
-        ]);
-  
-        $user = Employer::create([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'email' => $request->email,
-            'password' => bcrypt($request->password)
-        ]);
+        // Auth::logout();
 
-        event(new Registered($user));
-  
-        $token = $user->createToken('Laravel8PassportAuth')->accessToken;
-  
-        return response()->json(['token' => $token], 200);
-    }
+        Auth::userInfo()->token()->revoke();
 
+        return $this->success('User Logged out', 200);
 
-    public function employer_login(Request $request)
-    {
-        $data = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
-  
-        if (auth()->attempt($data)) {
-            $token = auth()->user()->createToken('Laravel8PassportAuth')->accessToken;
-            return response()->json(['token' => $token], 200);
-        } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
-        }
-    }
- 
-    public function EmployerInfo() 
-    {
- 
-     $employer = auth()->user();
-      
-     return response()->json(['employer' => $employer], 200);
- 
+        // Auth::logoutOtherDevices($password);
+
+        // $request->session()->invalidate();
+
+        // $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
 

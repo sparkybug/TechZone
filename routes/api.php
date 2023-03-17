@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\api\PassportAuthController;
 use App\Http\Controllers\api\LoginController;
 use App\Http\Controllers\api\RegisterController;
+use Illuminate\Session\Middleware\AuthenticateSession;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,7 @@ use App\Http\Controllers\api\RegisterController;
 
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
-
-Route::post('employer-register', [PassportAuthController::class, 'employer_register']);
-Route::post('employer-login', [PassportAuthController::class, 'employer_login']);
+// Route::get('logout', [PassportAuthController::class, 'logout']);
 
 Route::post('employer/register', [RegisterController::class, 'register']);
 Route::post('employer/login', [LoginController::class, 'login']);
@@ -39,7 +38,11 @@ Route::post('employer/login', [LoginController::class, 'login']);
   
 Route::middleware('auth:api')->group(function () {
     Route::get('get-user', [PassportAuthController::class, 'userInfo']);
-    Route::get('get-user', [PassportAuthController::class, 'EmployerInfo']);
+    Route::get('get-employer', [PassportAuthController::class, 'EmployerInfo']);
+});
+
+Route::middleware('auth:api')->group(function () {
+    Route::get('logout', [PassportAuthController::class, 'logout']);
 });
 
 Route::get('/email/verify', function () {

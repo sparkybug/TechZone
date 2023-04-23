@@ -43,6 +43,9 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
+    // Setting error log to heroku eerror log
+    'log' => 'errorlog',
+
     /*
     |--------------------------------------------------------------------------
     | Application URL

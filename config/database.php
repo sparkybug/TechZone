@@ -59,7 +59,7 @@ return [
             // 'charset' => 'utf8mb4',
             // 'collation' => 'utf8mb4_unicode_ci',
             'charset' => 'utf8',
-            'collation' => 'utf8mb4_unicode_ci',
+            'collation' => 'utf8_unicode_ci',
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,

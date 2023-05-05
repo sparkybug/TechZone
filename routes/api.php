@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\api\PassportAuthController;
 use App\Http\Controllers\api\LoginController;
 use App\Http\Controllers\api\RegisterController;
+use App\Http\Controllers\JobsController;
 use Illuminate\Session\Middleware\AuthenticateSession;
 
 /*
@@ -105,3 +106,6 @@ Route::post('/reset-password', function (Request $request) {
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
+
+// Job-posting route
+Route::post('/jobs', [JobsController::class, 'store']);

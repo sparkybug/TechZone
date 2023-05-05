@@ -22,5 +22,9 @@ class Jobs extends Model
         'job_des',
 
         // des means description
-    ]
+    ];
+
+    protected $casts = [
+        'jobs_created_at' => 'datetime',
+    ];
 }

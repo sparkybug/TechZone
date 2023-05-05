@@ -35,7 +35,7 @@ class JobsController extends Controller
     public function store(Request $request)
     {
         //
-        $validatedData = $request->validate([
+        $this->validate($request, [
             'job_tag' => 'required',
             'skill_set' => 'required',
             'work_period' => 'required',
@@ -44,14 +44,14 @@ class JobsController extends Controller
             'job_des' => 'required',
         ]);
 
-        $job = new Job;
-
-        $job->job_tag = $validatedData['job_tag'];
-        $job->skill_set = $validatedData['skill_set'];
-        $job->work_period = $validatedData['work_period'];
-        $job->budget_des = $validatedData['budget_des'];
-        $job->budget = $validatedData['budget'];
-        $job->job_des = $validatedData['job_des'];
+        $job = Jobs::create([
+            'job_tag' => $request->job_tag,
+            'skill_set' => $request->skill_set,
+            'work_period' => $request->work_period,
+            'budget_des' => $request->budget_des,
+            'budget' => $request->budget,
+            'job_des' => $request->job_des,
+        ]);
 
         $job->save();
 

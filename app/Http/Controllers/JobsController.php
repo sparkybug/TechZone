@@ -15,9 +15,9 @@ class JobsController extends Controller
     public function index()
     {
         //
-        // $jobs = Job::all();
+        $jobs = Jobs::all();
 
-        // return $jobs;
+        return $jobs;
     }
 
     /**

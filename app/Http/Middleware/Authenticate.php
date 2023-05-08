@@ -12,8 +12,6 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        return $request->expectsJson(['message' => 'not verified']) ? null : route('login');
-
-        // return $request->json(['message' => 'Not verified']);
+        return $request->expectsJson() ? null : route('login');
     }
 }

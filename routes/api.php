@@ -55,6 +55,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
  
     // return redirect('/home');
     return response()->json(['message' => 'Email verified']);
+    return back()->with('message', 'Email Verified!');
 })->middleware(['auth', 'signed'])->name('verification.verify');
  
 Route::post('/email/verification-notification', function (Request $request) {

@@ -21,6 +21,24 @@ class JobsController extends Controller
     }
 
     /**
+     * Function for saved jobs.
+     */
+    public function save(Request $request, $id)
+    {
+        // Find the job by ID
+        $jobs = Jobs::findorFail($id);
+
+        //  Save the job to the database
+        $saved = $request->user()->savedJobs()->toggle($jobs);
+
+        if($saved->contains($jobs)) {
+            return response()->json(['message' => 'Job saved successfully']);
+        } else {
+            return response()->json(['message' => 'Job removed from saved']);
+        }
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()

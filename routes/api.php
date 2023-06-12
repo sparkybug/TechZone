@@ -112,3 +112,4 @@ Route::post('/reset-password', function (Request $request) {
 // Job-posting route
 Route::post('/jobs', [JobsController::class, 'store']);
 Route::get('/jobs', [JobsController::class, 'index']);
+Route::post('/jobs/{id}/save', [JobsController::class, 'saved']);

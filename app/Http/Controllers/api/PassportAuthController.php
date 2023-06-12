@@ -69,7 +69,7 @@ class PassportAuthController extends Controller
     /**
      * Log the user out of the application
      */
-    public function logout(Request $request): RedirectResponse
+    public function logout(Request $request)
     {
         Auth::logout();
 

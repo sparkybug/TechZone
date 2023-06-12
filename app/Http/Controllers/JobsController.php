@@ -26,7 +26,7 @@ class JobsController extends Controller
     public function save(Request $request, $id)
     {
         // Find the job by ID
-        $jobs = Jobs::findorFail($id);
+        $jobs = Jobs::findOrFail($id);
 
         //  Save the job to the database
         $saved = $request->user()->savedJobs()->toggle($jobs);
@@ -81,10 +81,12 @@ class JobsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Jobs $jobs)
+    public function show(Jobs $jobs, $id)
     {
-        //
-        // return Job::findOrAbort($jobs);
+        // Retrieve a specific job by ID
+        $job = Jobs::findOrFail($id);
+
+        return response()->json($job);
     }
 
     /**
@@ -98,17 +100,25 @@ class JobsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Jobs $jobs)
+    public function update(Request $request, $id)
     {
-        //
+        // Update a specific job by ID
+        $job = Jobs::findOrFail($id);
+        $job->update($request->all());
+
+        return response()->json($job);
 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Jobs $jobs)
+    public function destroy(Jobs $jobs, $id)
     {
-        //
+        // Dlelete a specific job by ID
+        $job = Jobs::findOrFail($id);
+        $job->delete();
+
+        return response()->json(null, 204);
     }
 }

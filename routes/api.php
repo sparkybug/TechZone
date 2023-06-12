@@ -31,7 +31,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
-// Route::get('logout', [PassportAuthController::class, 'logout']);
+Route::post('logout', [PassportAuthController::class, 'logout']);
 
 Route::post('employer/register', [RegisterController::class, 'register']);
 Route::post('employer/login', [LoginController::class, 'login']);
@@ -43,7 +43,7 @@ Route::middleware('auth:api')->group(function () {
 });
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('logout', [PassportAuthController::class, 'logout']);
+    Route::post('logout', [PassportAuthController::class, 'logout']);
 });
 
 Route::get('/email/verify', function () {

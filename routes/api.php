@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\AssignmentController;
 use App\Http\Controllers\api\DeclineJobController;
+use App\Http\Controllers\VerificationController;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
@@ -48,23 +49,23 @@ Route::middleware('auth:api')->group(function () {
     Route::post('logout', [PassportAuthController::class, 'logout']);
 });
 
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
+// Route::get('/email/verify', function () {
+//     return view('auth.verify-email');
+// })->middleware('auth')->name('verification.notice');
 
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
+// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+//     $request->fulfill();
  
-    // return redirect('/home');
-    return response()->json(['message' => 'Email verified']);
-    return back()->with('message', 'Email Verified!');
-})->middleware(['auth', 'signed'])->name('verification.verify');
+//     // return redirect('/home');
+//     return response()->json(['message' => 'Email verified']);
+//     return back()->with('message', 'Email Verified!');
+// })->middleware(['auth', 'signed'])->name('verification.verify');
  
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
+// Route::post('/email/verification-notification', function (Request $request) {
+//     $request->user()->sendEmailVerificationNotification();
  
-    return back()->with('message', 'Verification link sent!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+//     return back()->with('message', 'Verification link sent!');
+// })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
@@ -124,3 +125,6 @@ Route::middleware('auth:api')->group(function() {
     Route::post('assign-job', [AssignmentController::class, 'assignJobs']);
     Route::post('decline-job', [DeclineJobController::class, 'declineJob']);
 });
+
+// Email Verification routes
+Route::get('verify-email/{token}', [VerificationController::class, 'verify'])->name('verification.verify');

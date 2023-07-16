@@ -8,7 +8,10 @@ use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
+use App\Notifications\VerifyEmailNotification;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -28,6 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'lastname',
         'email',
         'password',
+        'verification_token',
     ];
 
     /**
@@ -52,6 +56,10 @@ class User extends Authenticatable implements MustVerifyEmail
     // for email verification
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new \App\Notifications\VerifyEmailNotification($this->verification_token));
+        $this->verification_token = Str::random(60);
+
+        $this->notify(new VerifyEmailNotification($this->verification_token));
+
+        $this->save();
     }
 }

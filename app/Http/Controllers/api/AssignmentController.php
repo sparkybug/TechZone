@@ -51,11 +51,17 @@ class AssignmentController extends Controller
 
     public function assignJobs(Request $request)
     {
-        $this->validate($request, [
+        $validatedData = $request->validate([
             'job_id' => 'required|exists:jobs,id',
             'user_id' => 'required|exists:users,id',
         ]);
 
-        $job = Jobs::findOrFail()
+        $job = Jobs::findOrFail($validatedData['job_id']);
+
+        $job->assignedUsers()->attach($validatedData['user_id']);
+
+        return response()->json([
+            'message' => 'Job assigned successfully'
+        ]);
     }
 }

@@ -22,6 +22,10 @@ class Employer extends Authenticatable
         'lastname',
         'email',
         'password',
+        'company_name',
+        'is_employer',
+        'company_rating',
+        'company_location',
     ];
 
     protected $hidden = [

@@ -11,13 +11,17 @@ class VerificationController extends Controller
     public function verify(EmailVerificationRequest $request)
     {
         if ($request->user()->hasVerifiedEmail()) {
-            return redirect('/');
+            return response()->json([
+                'message' => 'User is already verified'
+            ], 200);
         }
 
         if ($request->user()->markEmailverified()) {
             event(new Verified($request->user()));
         }
 
-        return redirect('/')->with('message', 'Email verified successfully');
+        return response()->json([
+            'message' => 'Email verified successfully'
+        ], 200);
     }
 }

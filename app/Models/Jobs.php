@@ -27,4 +27,10 @@ class Jobs extends Model
     protected $casts = [
         'jobs_created_at' => 'datetime',
     ];
+
+    // Creating a relationship to savedJobs model
+    public function savedJobs()
+    {
+        return $this->belongsToMany(User::class, 'saved_jobs');
+    }
 }

@@ -26,6 +26,11 @@ class RegisterController extends Controller
             'lastname' => 'required|min:4',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed',
+            'company_name' => 'required|min:4',
+            'is_employer' => 'required',
+            'company_rating' => 'required',
+            'company_location' => 'required|min:4',
+            'total_spent' => 'required',
         ]);
 
         $user = Employer::create([

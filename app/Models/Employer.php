@@ -25,6 +25,7 @@ class Employer extends Authenticatable
         'company_name',
         'is_employer',
         'company_rating',
+        'total_spent',
         'company_location',
     ];
 

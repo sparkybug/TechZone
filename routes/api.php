@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\AssignmentController;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
@@ -116,3 +117,8 @@ Route::post('/jobs/{id}/save', [JobsController::class, 'saved']);
 Route::get('/jobs/{id}', [JobsController::class, 'show']);
 Route::put('/jobs/{id}', [JobsController::class, 'update']);
 Route::delete('/jobs/{id}', [JobsController::class, 'destroy']);
+
+// Route for Assigning jobs
+Route::middleware('auth:api')->group(function() {
+    Route::post('assign-job', [AssignmentController::class, 'assignJobs']);
+});

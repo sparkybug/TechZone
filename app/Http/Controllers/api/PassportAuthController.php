@@ -32,7 +32,9 @@ class PassportAuthController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
-        event(new Registered($user));
+        // event(new Registered($user));
+
+        $user->sendEmailVerificationNotification();
   
         $token = $user->createToken('Laravel8PassportAuth')->accessToken;
   

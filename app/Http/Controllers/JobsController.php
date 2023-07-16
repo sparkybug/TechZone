@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jobs;
+use App\Models\SavedJobs;
 use Illuminate\Contracts\Queue\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 
 class JobsController extends Controller
@@ -72,6 +74,13 @@ class JobsController extends Controller
         ]);
 
         $job->save();
+
+        $user = Auth::user();
+        
+        SavedJobs::create([
+            'user_id' => $user->id,
+            'job_id' => $job->id,
+        ]);
 
         return response()->json([
             'message' => 'Job posted successfully'

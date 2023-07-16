@@ -71,13 +71,16 @@ class PassportAuthController extends Controller
      */
     public function logout(Request $request)
     {
-        Auth::logout();
+        // Auth::logout();
 
-        $request->session()->invalidate();
+        // $request->session()->invalidate();
 
         // Auth::userInfo()->token()->revoke();
 
-        return response()->json(['User Logged out']);
+        $user = $request->user();
+        $user->tokens()->delete();
+
+        return response()->json(['User successfully Logged out']);
 
         // Auth::logoutOtherDevices($password);
 

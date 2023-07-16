@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\AssignedJobs;
 use Illuminate\Http\Request;
 
 class DeclineJobController extends Controller
@@ -45,5 +46,19 @@ class DeclineJobController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function declineJob(Request $request)
+    {
+        $validatedData = $request->validate([
+            'assigned_job_id' => 'required|exists:assigned_jobs,id',
+        ]);
+
+        $assignedJob = AssignedJobs::findOrFail($validatedData['assigned_job_id']);
+        $assignedJob->delete();
+
+        return response()->json([
+            'message' => 'Job declined successfully'
+        ]);
     }
 }

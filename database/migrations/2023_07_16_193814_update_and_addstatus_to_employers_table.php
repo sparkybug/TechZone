@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('employers', function (Blueprint $table) {
-            $table->longText('company_name')->default('');
-            $table->longText('company_rating')->default('');
-            $table->longText('total_spent')->default('');
-            $table->longText('company_location')->default('');
+            $table->string('company_name')->default('');
+            $table->string('company_rating')->default('');
+            $table->string('total_spent')->default('');
+            $table->string('company_location')->default('');
         });
     }
 

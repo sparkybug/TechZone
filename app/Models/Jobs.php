@@ -33,4 +33,10 @@ class Jobs extends Model
     {
         return $this->belongsToMany(User::class, 'saved_jobs');
     }
+
+    // Creating a relationship to assignedJobs model
+    public function assignedJobs()
+    {
+        return $this->belongsToMany(User::class, 'assigned_jobs');
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AssignmentController;
+use App\Http\Controllers\api\DeclineJobController;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
@@ -121,4 +122,5 @@ Route::delete('/jobs/{id}', [JobsController::class, 'destroy']);
 // Route for Assigning jobs
 Route::middleware('auth:api')->group(function() {
     Route::post('assign-job', [AssignmentController::class, 'assignJobs']);
+    Route::post('decline-job', [DeclineJobController::class, 'declineJob']);
 });

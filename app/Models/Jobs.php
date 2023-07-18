@@ -38,5 +38,6 @@ class Jobs extends Model
     public function assignedJobs()
     {
         return $this->belongsToMany(User::class, 'assigned_jobs');
+        return $this->belongsToMany(User::class, 'saved_jobs')->withTimestamps();
     }
 }

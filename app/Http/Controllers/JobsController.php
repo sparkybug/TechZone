@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Jobs;
 use App\Models\SavedJobs;
 use Illuminate\Contracts\Queue\Job;
@@ -129,5 +130,11 @@ class JobsController extends Controller
         $job->delete();
 
         return response()->json(null, 204);
+    }
+
+    public function getSavedJobs(Request $request, User $user)
+    {
+        $savedJobs - $user->savedJobs()->with('job')->get();
+        return reponse()->json($savedJobs, 200);
     }
 }

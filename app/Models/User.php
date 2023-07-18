@@ -18,6 +18,12 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, Notifiable, HasFactory;
 
     protected $primaryKey = 'user_id';
+
+    // override the method to specify my custom primary key name
+    public function getKeyName()
+    {
+        return 'user_id';
+    }
     /**
      * The attributes that are mass assignable.
      *

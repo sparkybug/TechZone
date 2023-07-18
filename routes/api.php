@@ -123,6 +123,9 @@ Route::delete('/jobs/{id}', [JobsController::class, 'destroy']);
 // Route for Assigning jobs
 Route::middleware('auth:api')->group(function() {
     Route::post('assign-job', [AssignmentController::class, 'assignJobs']);
+
+    Route::get('user/{user}/jobs', [AssignmentController::class, 'getUserJobs']);
+    
     Route::post('decline-job', [DeclineJobController::class, 'declineJob']);
 });
 

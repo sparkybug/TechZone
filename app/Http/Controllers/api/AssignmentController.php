@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\AssignedJobs;
 use App\Models\Jobs;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AssignmentController extends Controller
@@ -63,5 +64,11 @@ class AssignmentController extends Controller
         return response()->json([
             'message' => 'Job assigned successfully'
         ]);
+    }
+
+    public function getUserJobs(Request $request, User $user)
+    {
+        $jobs = AssignedJobs::where('user_id', $user->id)->get();
+        return response()->json($jobs, 200);
     }
 }

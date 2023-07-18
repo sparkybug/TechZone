@@ -18,6 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, Notifiable, HasFactory;
 
+    protected $table = 'users';
     protected $primaryKey = 'user_id';
 
     // override the method to specify my custom primary key name

@@ -14,11 +14,11 @@ class VerifyEmailNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    protected $verificationToken;
+    protected $verification_token;
 
-    public function __construct($verificationToken)
+    public function __construct($verification_token)
     {
-        $this->verificationToken = $verificationToken;
+        $this->verification_token = $verification_token;
     }
 
     /**
@@ -36,7 +36,7 @@ class VerifyEmailNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $verificationUrl = url('/verify-email'.$this->verificationToken);
+        $verificationUrl = url('/verify-email'.$this->verification_token);
 
         return (new MailMessage)
                     ->subject('Verify Email Address')

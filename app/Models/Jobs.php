@@ -13,6 +13,8 @@ class Jobs extends Model
 
     protected $table = 'jobs';
 
+    protected $primaryKey = 'job_id';
+
     protected $fillable = [
         'job_tag',
         'skill_set',

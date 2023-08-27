@@ -34,7 +34,7 @@ class PassportAuthController extends Controller
 
         event(new Registered($user));
 
-        // $user->sendEmailVerificationNotification();
+        $user->sendEmailVerificationNotification();
   
         $token = $user->createToken('Laravel8PassportAuth')->accessToken;
   

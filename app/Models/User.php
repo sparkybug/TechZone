@@ -24,7 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
     // override the method to specify my custom primary key name
     public function getKey()
     {
-        return 'user_id';
+        // return 'user_id';
     }
     /**
      * The attributes that are mass assignable.

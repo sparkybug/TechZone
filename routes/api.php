@@ -119,7 +119,7 @@ Route::post('/jobs/{id}/save', [JobsController::class, 'save']);
 Route::get('/jobs/{id}', [JobsController::class, 'show']);
 Route::put('/jobs/{id}', [JobsController::class, 'update']);
 Route::delete('/jobs/{id}', [JobsController::class, 'destroy']);
-Route::get('user/{user}/saved-jobs', [JobsController::class, 'getSavedJobs']);
+Route::get('user/{user}/saved-jobs', [JobsController::class, 'getSavedJobsPerUser']);
 
 // Route for Assigning jobs
 Route::middleware('auth:api')->group(function() {

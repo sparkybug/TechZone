@@ -132,9 +132,15 @@ class JobsController extends Controller
         return response()->json(null, 204);
     }
 
-    public function getSavedJobs(Request $request, User $user)
+    public function getSavedJobsPerUser(Request $request, User $user)
     {
         $savedJobs = $user->savedJobs()->with('job')->get();
         return response()->json($savedJobs, 200);
     }
+
+    // public function getAllSavedJobs(Request $request)
+    // {
+    //     $savedJobs = $user->savedJobs()->with('job')->get();
+    //     return response()->json($savedJobs, 200);
+    // }
 }

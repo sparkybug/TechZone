@@ -35,7 +35,7 @@ class PassportAuthController extends Controller
 
         event(new Registered($user));
 
-        // $user->sendEmailVerificationNotification();
+        $user->sendEmailVerificationNotification();
 
         // $user->markEmailAsVerified();
   

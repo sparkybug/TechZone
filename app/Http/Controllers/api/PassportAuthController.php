@@ -33,7 +33,7 @@ class PassportAuthController extends Controller
             'email_verified_at' => now()
         ]);
 
-        event(new Registered($user));
+        // event(new Registered($user));
 
         // $user->sendEmailVerificationNotification();
 

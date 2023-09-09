@@ -134,7 +134,7 @@ class JobsController extends Controller
 
     public function getSavedJobs(Request $request, User $user)
     {
-        $savedJobs - $user->savedJobs()->with('job')->get();
-        return reponse()->json($savedJobs, 200);
+        $savedJobs = $user->savedJobs()->with('job')->get();
+        return response()->json($savedJobs, 200);
     }
 }

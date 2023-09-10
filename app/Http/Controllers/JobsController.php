@@ -32,7 +32,7 @@ class JobsController extends Controller
         $jobs = Jobs::findOrFail($id);
 
         //  Save the job to the database
-        $saved = $request->user()->toggle($jobs);
+        $saved = $request->user()->savedJobs()->toggle($jobs);
 
         if($saved->contains($jobs)) {
             return response()->json(['message' => 'Job saved successfully']);

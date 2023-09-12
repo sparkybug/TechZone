@@ -15,6 +15,7 @@ use App\Http\Controllers\api\PassportAuthController;
 use App\Http\Controllers\api\LoginController;
 use App\Http\Controllers\api\RegisterController;
 use App\Http\Controllers\JobsController;
+use App\Http\Controllers\SavedJobController;
 use Illuminate\Session\Middleware\AuthenticateSession;
 
 /*
@@ -129,5 +130,8 @@ Route::middleware('auth:api')->group(function() {
 
     Route::post('decline-job', [DeclineJobController::class, 'declineJob']);
 });
+
+// Routes for saved-jobs
+Route::resource('saved-jobs', SavedJobController::class);
 
 

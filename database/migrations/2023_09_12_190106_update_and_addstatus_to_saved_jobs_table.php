@@ -12,6 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('saved_jobs', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+            $table->dropColumn('job_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('job_id')->references('id')->on('jobs');
         });

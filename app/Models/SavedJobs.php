@@ -16,12 +16,7 @@ class SavedJobs extends Model
     protected $primaryKey = 'job_id';
 
     protected $fillable = [
-        'job_tag',
-        'skill_set',
-        'work_period',
-        'budget_des',
-        'budget',
-        'job_des',
+        
 
         // des means description
     ];

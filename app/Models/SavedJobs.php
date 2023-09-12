@@ -16,6 +16,7 @@ class SavedJobs extends Model
     protected $primaryKey = 'job_id';
 
     protected $fillable = [
+        'user_id',
         'job_id',
 
         // des means description

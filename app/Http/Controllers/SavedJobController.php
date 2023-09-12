@@ -11,7 +11,7 @@ class SavedJobController extends Controller
     {
         $validatedData = $request->validate([
             'user_id' => 'required|exists:users,id',
-            'job_id' => 'required|exists:jobs,id',
+            'job_id' => 'required|exists:jobs,job_id',
         ]);
 
         $savedJob = SavedJobs::create($validatedData);

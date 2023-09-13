@@ -40,9 +40,10 @@ Route::post('logout', [PassportAuthController::class, 'logout']);
 Route::post('employer/register', [RegisterController::class, 'register']);
 Route::post('employer/login', [LoginController::class, 'login']);
 
+Route::get('get-user/{id}', [PassportAuthController::class, 'userInfo']);
+
   
 Route::middleware('auth:api')->group(function () {
-    Route::get('get-user/{id}', [PassportAuthController::class, 'userInfo']);
     Route::get('get-employer', [PassportAuthController::class, 'EmployerInfo']);
 });
 

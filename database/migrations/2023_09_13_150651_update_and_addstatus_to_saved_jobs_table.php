@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('saved_jobs', function (Blueprint $table) {
-            $table->dropForeign('user_id');
+            $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
-            $table->dropForeign('job_id');
+            $table->dropForeign(['job_id']);
             $table->dropColumn('job_id');
+            
         });
     }
 

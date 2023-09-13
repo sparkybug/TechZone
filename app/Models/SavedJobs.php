@@ -11,7 +11,7 @@ class SavedJobs extends Model
 
     protected $guard = 'jobs';
 
-    protected $table = 'jobs';
+    protected $table = 'saved_jobs';
 
     protected $primaryKey = 'job_id';
 

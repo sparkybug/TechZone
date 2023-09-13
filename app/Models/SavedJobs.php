@@ -31,4 +31,10 @@ class SavedJobs extends Model
     {
         return $this->belongsToMany(User::class, 'saved_jobs');
     }
+
+    public function job()
+    {
+        return $this->belongsTo(Jobs::class, 'job_id');
+    }
+
 }

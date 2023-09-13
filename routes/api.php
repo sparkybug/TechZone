@@ -116,7 +116,6 @@ Route::post('/reset-password', function (Request $request) {
 // Job-posting route
 Route::post('/jobs', [JobsController::class, 'store']);
 Route::get('/jobs', [JobsController::class, 'index']);
-Route::post('/jobs/{id}/save', [JobsController::class, 'save']);
 Route::get('/jobs/{id}', [JobsController::class, 'show']);
 Route::put('/jobs/{id}', [JobsController::class, 'update']);
 Route::delete('/jobs/{id}', [JobsController::class, 'destroy']);

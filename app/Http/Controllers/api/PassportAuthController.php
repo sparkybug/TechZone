@@ -62,13 +62,18 @@ class PassportAuthController extends Controller
         }
     }
  
-    public function userInfo() 
+    public function userInfo($id) 
     {
- 
-     $user = auth()->user();
+        // retrieving user by ID
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'User not found'
+            ], 404);
+        }
       
-     return response()->json(['user' => $user], 200);
- 
+        return response()->json(['user' => $user], 200);
     }
 
     /**

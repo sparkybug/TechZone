@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('saved_jobs', function (Blueprint $table) {
-            $table->dropTimestamps();
+            $table->dropColumn('created_at');
+            $table->dropColumn('updated_at');
         });
     }
 

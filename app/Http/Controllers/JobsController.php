@@ -78,10 +78,10 @@ class JobsController extends Controller
 
         $user = Auth::user();
         
-        SavedJobs::create([
-            'user_id' => $user->id,
-            'job_id' => $job->id,
-        ]);
+        // SavedJobs::create([
+        //     'user_id' => $user->id,
+        //     'job_id' => $job->id,
+        // ]);
 
         return response()->json([
             'message' => 'Job posted successfully'

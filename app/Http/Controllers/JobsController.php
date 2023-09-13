@@ -77,10 +77,10 @@ class JobsController extends Controller
         // Create the association in the "saved_jobs" table
         $user = Auth::user();
         
-        // SavedJobs::create([
-        //     'user_id' => $user->id,
-        //     'job_id' => $job->job_id,
-        // ]);
+        SavedJobs::create([
+            'user_id' => $user->id,
+            'job_id' => $job->job_id,
+        ]);
 
         return response()->json([
             'message' => 'Job posted successfully'

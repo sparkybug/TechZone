@@ -23,7 +23,7 @@ class SavedJobController extends Controller
     public function index(Request $request)
     {
         $user_id = $request->input('user_id');
-        $savedJobs = SavedJobs::where('user_id', $user_id)->get();
+        $savedJobs = SavedJobs::where('user_id', $user_id)->with('job')->get();
 
         return response()->json(['data' => $savedJobs]);
     }

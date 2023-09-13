@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('saved_jobs', function (Blueprint $table) {
-            $table->dropColumn('timestamps');
+            $table->dropTimestamps();
         });
     }
 

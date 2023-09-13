@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SavedJobs;
+use App\Models\User;
 
 class SavedJobController extends Controller
 {
@@ -34,4 +35,11 @@ class SavedJobController extends Controller
 
         return response()->json(['message' => 'Job removed from saved jobs']);
     }
+
+    public function getSavedJobsPerUser(Request $request, User $user)
+    {
+        $savedJobs = $user->savedJobs()->with('job')->get();
+        return response()->json($savedJobs, 200);
+    }
+
 }

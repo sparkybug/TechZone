@@ -42,7 +42,7 @@ Route::post('employer/login', [LoginController::class, 'login']);
 
   
 Route::middleware('auth:api')->group(function () {
-    Route::get('get-user', [PassportAuthController::class, 'userInfo']);
+    Route::get('get-user/{id}', [PassportAuthController::class, 'userInfo']);
     Route::get('get-employer', [PassportAuthController::class, 'EmployerInfo']);
 });
 

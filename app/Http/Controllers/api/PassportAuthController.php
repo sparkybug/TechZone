@@ -73,15 +73,15 @@ class PassportAuthController extends Controller
         // }
 
          // Get the authenticated user
-    $user = User::user();
+        $user = Auth::user();
 
-    // Check if the user is authenticated
-    if (!$user) {
-        return response()->json(['message' => 'Unauthorized'], 401);
-    }
+        // Check if the user is authenticated
+        if (!$user) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
 
-    // Return the user information in the response
-    return response()->json(['user' => $user], 200);
+        // Return the user information in the response
+        return response()->json(['user' => $user], 200);
     }
  
     public function user_Info($id) 
@@ -94,8 +94,20 @@ class PassportAuthController extends Controller
                 'message' => 'User not found'
             ], 404);
         }
+
+        // Access user properties
+        $name = $user->name;
+        $email = $user->email;
+
+        // You can access other user attributes in a similar way
+
+        return response()->json(['user' => [
+            'name' => $name,
+            'email' => $email,
+            // Include other user attributes here
+        ]], 200);
       
-        return response()->json(['user' => $user], 200);
+        // return response()->json(['user' => $user], 200);
     }
 
     /**

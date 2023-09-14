@@ -73,7 +73,7 @@ class PassportAuthController extends Controller
         // }
 
          // Get the authenticated user
-    $user = Auth::user();
+    $user = User::user();
 
     // Check if the user is authenticated
     if (!$user) {

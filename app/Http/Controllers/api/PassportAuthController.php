@@ -76,9 +76,9 @@ class PassportAuthController extends Controller
         $user = Auth::user();
 
         // Check if the user is authenticated
-        if (!$user) {
-            return response()->json(['message' => 'Unauthorized'], 401);
-        }
+        // if (!$user) {
+        //     return response()->json(['message' => 'Unauthorized'], 401);
+        // }
 
         // Access user properties
         $name = $user->name;

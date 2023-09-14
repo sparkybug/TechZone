@@ -80,6 +80,18 @@ class PassportAuthController extends Controller
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
+        // Access user properties
+        $name = $user->name;
+        $email = $user->email;
+
+        // You can access other user attributes in a similar way
+
+        return response()->json(['user' => [
+            'name' => $name,
+            'email' => $email,
+            // Include other user attributes here
+        ]], 200);
+
         // Return the user information in the response
         return response()->json(['user' => $user], 200);
     }
@@ -94,20 +106,8 @@ class PassportAuthController extends Controller
                 'message' => 'User not found'
             ], 404);
         }
-
-        // Access user properties
-        $name = $user->name;
-        $email = $user->email;
-
-        // You can access other user attributes in a similar way
-
-        return response()->json(['user' => [
-            'name' => $name,
-            'email' => $email,
-            // Include other user attributes here
-        ]], 200);
       
-        // return response()->json(['user' => $user], 200);
+        return response()->json(['user' => $user], 200);
     }
 
     /**

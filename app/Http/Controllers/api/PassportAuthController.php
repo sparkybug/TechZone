@@ -64,16 +64,8 @@ class PassportAuthController extends Controller
 
     public function userInfo()
     {
-        // Check if the user is authenticated via the access token
-        // if (Auth::check()) {
-        //     $user = Auth::user();
-        //     return response()->json(['user' => $user], 200);
-        // } else {
-        //     return response()->json(['message' => 'Unauthorized'], 401);
-        // }
-
          // Get the authenticated user
-        $user = Auth::user();
+        $user = auth()->user();
 
         // Check if the user is authenticated
         // if (!$user) {
@@ -115,24 +107,18 @@ class PassportAuthController extends Controller
      */
     public function logout(Request $request)
     {
-        // Auth::logout();
-
-        // $request->session()->invalidate();
-
-        // Auth::userInfo()->token()->revoke();
-
         $user = $request->user();
         $user->token()->revoke();
 
         return response()->json(['User successfully Logged out']);
+    }
 
-        // Auth::logoutOtherDevices($password);
+    /**
+     * Updating user's profile
+     */
+    public function updateProfile(Request $request)
+    {
 
-        // $request->session()->invalidate();
-
-        // $request->session()->regenerateToken();
-
-        // return redirect('/');
     }
 }
 

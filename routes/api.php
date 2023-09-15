@@ -34,7 +34,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 // });
 
 Route::post('register', [PassportAuthController::class, 'register']);
-Route::post('login', [PassportAuthController::class, 'login']);
+Route::middleware('auth:api')->post('login', [PassportAuthController::class, 'login']);
 Route::post('logout', [PassportAuthController::class, 'logout']);
 
 Route::post('employer/register', [RegisterController::class, 'register']);

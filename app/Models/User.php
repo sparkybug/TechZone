@@ -32,15 +32,10 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        // 'name',
-        // 'email',
-        // 'password',
-
         'firstname',
         'lastname',
         'email',
         'password',
-        // 'verification_token',
     ];
 
     /**
@@ -61,16 +56,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    // for email verification
-    // public function sendEmailVerificationNotification()
-    // {
-    //     $this->verification_token = Str::random(60);
-
-    //     $this->notify(new VerifyEmailNotification($this->verification_token));
-
-    //     $this->save();
-    // }
 
     public function savedJobs()
     {

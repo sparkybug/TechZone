@@ -34,7 +34,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 // });
 
 Route::post('register', [PassportAuthController::class, 'register']);
-Route::post('login', [PassportAuthController::class, 'login'])->middleware('auth.basic');
+Route::post('login', [PassportAuthController::class, 'login']);
 Route::post('logout', [PassportAuthController::class, 'logout']);
 
 Route::post('employer/register', [RegisterController::class, 'register']);
@@ -44,7 +44,7 @@ Route::get('get-user/{id}', [PassportAuthController::class, 'user_Info']);
 
 // Route::get('get-user-info', [PassportAuthController::class, 'userInfo']);
 
-Route::middleware('auth:api')->get('/get-user-info', 'PassportAuthController@userInfo');
+Route::middleware('auth.basic')->get('/get-user-info', 'PassportAuthController@userInfo');
 
 Route::middleware('auth:api')->group(function () {
     Route::get('get-employer', [PassportAuthController::class, 'EmployerInfo']);
